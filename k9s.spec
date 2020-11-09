@@ -17,7 +17,7 @@ K9s provides a terminal UI to interact with your Kubernetes clusters. The aim of
 %autosetup
 
 %build
-go --version
+go version
 make build
 
 %install
