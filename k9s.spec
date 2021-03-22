@@ -1,5 +1,5 @@
 Name:           k9s
-Version:        0.23.9
+Version:        0.24.3
 Release:        1%{?dist}
 Summary:        Kubernetes CLI To Manage Your Clusters In Style!
 License:        Apache-2.0
@@ -15,14 +15,14 @@ BuildRequires:  make, git, go >= 1.13
 K9s provides a terminal UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with your observed resources.
 
 %prep
-%autosetup
+%autosetup -n %{name}-master
 
 %build
 go version
 make build
 
 %install
-install -D -m 0755 %{_builddir}/%{name}-%{version}/execs/%{name} "%{buildroot}/%{_bindir}/%{name}"
+install -D -m 0755 %{_builddir}/%{name}-master/execs/%{name} "%{buildroot}/%{_bindir}/%{name}"
 
 %files
 %license LICENSE
@@ -31,5 +31,8 @@ install -D -m 0755 %{_builddir}/%{name}-%{version}/execs/%{name} "%{buildroot}/%
 
 
 %changelog
+* Mon Mar 22 2021 Guilherme Cardoso <gjc@ua.pt> 0.24.3
+- Build directly from master instead of the tagged version due to the dev bugfixing without releases
+
 * Mon Nov  9 2020 Guilherme Cardoso <gjc@ua.pt> 0.23.9
 - First release
